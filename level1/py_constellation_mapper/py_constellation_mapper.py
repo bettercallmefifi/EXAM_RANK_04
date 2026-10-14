@@ -1,9 +1,19 @@
 def constellation_mapper(start: list[tuple[int, int]], dim: int) -> list[str]:
-    grille = [['.'] * dim for _ in range(dim)]
-    for ligne , col in start:
-        if ligne in range(dim) and col in range(dim):
-            grille[ligne][col] = '*'
-    rst = []
-    for ligne in grille:
-        rst.append(''.join(ligne))
-    return rst
+    result = []
+    for r in range(dim):
+        row = ""
+        for c in range(dim):
+            if (r, c) in start:
+                row += "*"
+            else:
+                row += "."
+        result.append(row)
+    return result
+
+if __name__ == "__main__":
+    print(constellation_mapper([(0, 0), (1, 1), (2, 2)], 3))
+    print(constellation_mapper([(1, 1), (0, 1), (2, 1), (1, 0), (1, 2)], 3))
+    print(constellation_mapper([], 2))
+    print(constellation_mapper([(0, 0), (0, 0), (1, 1)], 2))
+    print(constellation_mapper([(0, 0), (5, 5)], 3))
+    print(constellation_mapper([(1, 0), (1, 1), (1, 2)], 3))
